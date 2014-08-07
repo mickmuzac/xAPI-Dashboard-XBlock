@@ -1,5 +1,3 @@
-"""TO-DO: Write a description of what this XBlock is."""
-
 import pkg_resources
 import uuid
 
@@ -9,14 +7,10 @@ from xblock.fragment import Fragment
 
 
 class DashXBlock(XBlock):
-    """
-    TO-DO: document what your XBlock does.
-    """
 
     # Fields are defined on the class.  You can access them in your code as
     # self.<fieldname>.
 
-    # TO-DO: delete count, and define your own fields.
     count = Integer(default=0, scope=Scope.user_state, help="A simple counter, to show something happening")
     width = Integer(default=700, scope=Scope.settings, help="The width of the generated svg")
     height = Integer(default=300, scope=Scope.settings, help="The height of the generated svg")
