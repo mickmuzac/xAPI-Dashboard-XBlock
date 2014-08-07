@@ -1,0 +1,9 @@
+/* CSS for DashXBlock */
+
+.dashxblock_block .count {
+    font-weight: bold;
+}
+
+.dashxblock_block p {
+    cursor: pointer;
+}
