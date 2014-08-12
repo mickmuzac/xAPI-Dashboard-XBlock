@@ -12,8 +12,8 @@ class DashXBlock(XBlock):
     # self.<fieldname>.
 
     count = Integer(default=0, scope=Scope.user_state, help="A simple counter, to show something happening")
-    width = Integer(default=700, scope=Scope.settings, help="The width of the generated svg")
-    height = Integer(default=300, scope=Scope.settings, help="The height of the generated svg")
+    width = String(default="700", scope=Scope.settings, help="The width of the generated svg")
+    height = String(default="300", scope=Scope.settings, help="The height of the generated svg")
     groupBy = String(default="actor.mbox", scope=Scope.settings, help="The xAPI xpath used to group statements by")
     display_name = String(display_name="Display Name", default="xAPI Dashboard", scope=Scope.settings, help="Name of the component in the edxplatform")
                               
@@ -61,6 +61,22 @@ class DashXBlock(XBlock):
 
         self.count += 1
         return {"count": self.count}
+        
+    @XBlock.json_handler
+    def update_dashboard(self, data, suffix=''):
+        """
+        An example handler, which increments the data.
+        """
+        # Just to show data coming in...
+        
+        self.display_name = data['display_name']
+        self.height = data['height']
+        self.width = data['width']
+        
+        print "This is the incoming data:"
+        print data
+
+        return {"success": self.height}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.

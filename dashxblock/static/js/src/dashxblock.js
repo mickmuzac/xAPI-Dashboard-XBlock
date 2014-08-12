@@ -1,8 +1,27 @@
 window.isFetching = false, window.statements = false, window.dash;
 function DashXBlock(runtime, element) {
 	
-	$(element).find('.cancel-button').bind('click', function() {
+	$(element).find('.cancel-button').click(function() {
         runtime.notify('cancel', {});
+    });
+	
+	$(element).find('.save-button').bind('click', function() {
+        runtime.notify('cancel', {});
+        
+        var handlerUrl = runtime.handlerUrl(element, 'update_dashboard');
+        var outObj = {};
+        
+        
+        outObj.width = $(element).find('#edit_width').val();
+        outObj.height = $(element).find('#edit_height').val();
+        outObj.display_name = $(element).find('#edit_display_name').val();
+        
+        $.post(handlerUrl, JSON.stringify(outObj), function(res){
+        
+			console.log("This is the response: ", res);
+		});
+        
+        
     });
 	
     function updateCount(result) {
